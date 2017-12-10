@@ -25,7 +25,6 @@ func main() {
     chars := strings.Split(dat, "")
     charlen := len(chars)
 
-    // the last int is a special case from wrapping
     for i := 0 ; i < charlen ; i++ {
         if chars[i] == chars[(i + charlen / 2) % charlen] {
             x, err := strconv.ParseInt(chars[i], 10, 32)
