@@ -23,22 +23,15 @@ func main() {
     check(scanner.Err())
     dat = scanner.Text()
     chars := strings.Split(dat, "")
+    charlen := len(chars)
 
-    // the last int is a special case from wrapping
-    for i := 0 ; i < (len(chars)-1) ; i++ {
-        if chars[i] == chars[i+1] {
+    for i := 0 ; i < charlen ; i++ {
+        // the % here takes care of wrapping
+        if chars[i] == chars[(i+1)%charlen] {
             x, err := strconv.ParseInt(chars[i], 10, 32)
             check(err)
             sum += x
         }
     }
-
-    // special wrap-around case
-    if chars[len(chars)-1] == chars[0] {
-        x, err := strconv.ParseInt(chars[0], 10, 32)
-        check(err)
-        sum += x
-    }
-
     fmt.Printf("%d\n", sum)
 }
